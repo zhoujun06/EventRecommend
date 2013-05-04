@@ -7,6 +7,9 @@ import csv
 import random
 import numpy  as np
 import pandas as pd
+from sklearn import svm
+from sklearn import tree 
+from sklearn.metrics import classification_report
 
 #class GenFeature:
 #	def __init__(self):
@@ -116,7 +119,16 @@ def main():
 		select[col]=select[col].astype(np.float64)
 		select[col]=select[col]/max(select[col])
 
-	select.to_csv('train_feature.csv', index=False)
+	
+	#clf = svm.SVC(gamma=0.001, C=100.)
+	clf = tree.DecisionTreeClassifier() 
+	clf.fit(select.values[:,:-1], select.values[:,-1])
+	pred = clf.predict(select.values[:,:-1])
+	target_names = ['class 0', 'class 1']
+	result = classification_report(select.values[:,-1], pred, target_names)
+	print result
+
+	#select.to_csv('train_feature.csv', index=False)
 
 
 if __name__=="__main__":

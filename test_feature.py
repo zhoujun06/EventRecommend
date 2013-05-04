@@ -24,7 +24,7 @@ def isNotNull(string):
 
 def main():
 	data_path = '../'
-	test_file = data_path + 'test.csv'
+	test_file = data_path + 'test_valid.csv'
 	solution_file = data_path + 'public_leaderboard_solution.csv'
 	event_file = data_path + 'events_valid.csv'
 	user_file = data_path + 'users.csv'
